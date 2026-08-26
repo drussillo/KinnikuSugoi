@@ -1,5 +1,6 @@
 package com.example.kinnikusugoi
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,13 +10,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Color
 
 
 @Composable
@@ -27,7 +28,7 @@ fun WorkoutSelect() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .statusBarsPadding(),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Text(text="Select Your Workout")
             }
