@@ -66,7 +66,12 @@ fun MyApp() {
             )
         }
         composable("workoutSelect") {
-            WorkoutSelect()
+            WorkoutSelect(
+                onNavigateToWorkoutEditor = { navController.navigate("workoutEditor") }
+            )
+        }
+        composable("workoutEditor") {
+            WorkoutEditor()
         }
     }
 }
