@@ -1,4 +1,4 @@
-package com.example.kinnikusugoi
+package com.example.kinnikusugoi.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.material3.Surface
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -66,12 +65,7 @@ fun MyApp() {
             )
         }
         composable("workoutSelect") {
-            WorkoutSelect(
-                onNavigateToWorkoutEditor = { navController.navigate("workoutEditor") }
-            )
-        }
-        composable("workoutEditor") {
-            WorkoutEditor()
+            WorkoutSelect()
         }
     }
 }
