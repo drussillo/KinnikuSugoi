@@ -7,12 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.kinnikusugoi.data.testdb
 import com.example.kinnikusugoi.ui.theme.KinnikuSugoiTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,6 +29,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
+
+    // test
+    //testdb()
 
     NavHost(
         navController = navController,
