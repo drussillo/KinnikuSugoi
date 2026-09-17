@@ -21,7 +21,7 @@ import androidx.room3.RoomDatabase
             workout::class,
             exercise::class,
             workout_exercise::class,
-            //history::class
+            history::class
         ], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

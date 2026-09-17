@@ -1,8 +1,16 @@
 package com.example.kinnikusugoi.data
 
+import android.content.Context
 import androidx.room3.Dao
 import androidx.room3.Insert
 import androidx.room3.Query
+import androidx.room3.Room
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Dao
 interface UserDao {
@@ -47,4 +55,22 @@ interface HistoryDao {
 
     @Query("SELECT * FROM history")
     suspend fun getAll(): List<history>
+}
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+
+    @Provides
+    @Singleton
+    fun provideDB(
+        @ApplicationContext context: Context
+    ): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "KinnikuSugoi.db"
+        ).build()
+    }
 }
