@@ -37,7 +37,14 @@ data class user(
     val units: Units
 )
 
-@Entity
+@Entity(
+    indices = [
+        Index(
+            value = ["user_id", "name"],
+            unique = true
+        )
+    ]
+)
 data class workout(
     @PrimaryKey val workout_id: String,
     val user_id: String,
@@ -55,7 +62,14 @@ data class user_with_workout(
     val workouts: List<workout>
 )
 
-@Entity
+@Entity(
+    indices = [
+        Index(
+            value = ["user_id", "name"],
+            unique = true
+        )
+    ]
+)
 data class exercise(
     @PrimaryKey val exercise_id: String,
     val user_id: String,
@@ -72,7 +86,18 @@ data class user_with_exercise(
     val exercises: List<exercise>
 )
 
-@Entity(primaryKeys = ["workout_id", "exercise_id"], indices = [Index("workout_id", "exercise_id")])
+@Entity(
+    primaryKeys = ["workout_id", "exercise_id"],
+    indices = [
+        Index(
+            "workout_id", "exercise_id"
+        ),
+        Index(
+            value = ["exercise_id", "order"],
+            unique = true
+        )
+    ],
+)
 data class workout_exercise(
     val workout_id: String,
     val exercise_id: String,
