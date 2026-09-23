@@ -1,5 +1,6 @@
 package com.example.kinnikusugoi.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kinnikusugoi.R
+import com.example.kinnikusugoi.viewmodels.TestViewModel
+import kotlinx.coroutines.launch
 
 
 @Composable
@@ -69,14 +75,17 @@ fun WorkoutSelect() {
 
 
 @Composable
-private fun WorkoutList(modifier: Modifier = Modifier) {
-    //Text(modifier=modifier, text = "workout1..etc")
+private fun WorkoutList(
+    viewModel: TestViewModel = hiltViewModel(),  // TODO: temporary test, will replace with Workout ViewModel
+    modifier: Modifier = Modifier
+) {
+    Text(modifier = modifier, text=viewModel.users) // TODO: temporary test
     LazyColumn(
         modifier = modifier
     ) {
-        items(getSampleWorkouts()) { workout ->
+        /*items(getSampleWorkouts()) { workout ->
             Text(text = workout)
-        }
+        }*/
     }
 }
 
