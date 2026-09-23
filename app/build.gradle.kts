@@ -55,6 +55,7 @@ dependencies {
     // hilt
     implementation(libs.androidx.hilt)
     ksp(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
