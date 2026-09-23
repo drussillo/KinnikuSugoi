@@ -1,18 +1,20 @@
 package com.example.kinnikusugoi.data
 
+import androidx.room3.ColumnTypeConverter
+import androidx.room3.ColumnTypeConverters
 import androidx.room3.Embedded
 import androidx.room3.Entity
 import androidx.room3.Index
 import androidx.room3.PrimaryKey
 import androidx.room3.Relation
-
+import java.util.Date
 
 
 @Entity
 data class user(
     @PrimaryKey val user_id: String,
     val name: String,
-    val joined_date: Long,  // TODO
+    val joined_date: Date,
     val units: Units
 )
 
@@ -28,7 +30,7 @@ data class workout(
     @PrimaryKey val workout_id: String,
     val user_id: String,
     val name: String,
-    val last_performed: Long,  // TODO
+    val last_performed: Date,
 )
 
 @Entity
@@ -89,8 +91,8 @@ data class history(
     @PrimaryKey val history_id: String,
     val exercise_id: String,
     val instance: UInt,
-    val start_time: Long,  // TODO
-    val end_time: Long,  // TODO
+    val start_time: Date,
+    val end_time: Date,
     val weight: Float,
     val reps: UInt
 )
@@ -98,4 +100,17 @@ data class history(
 enum class Units {
     LBS,
     KGS
+}
+
+
+class Converters {
+    @ColumnTypeConverter
+    fun fromTimestamp(timestamp: Long?): Date? {
+        return timestamp?.let { Date(it) }
+    }
+
+    @ColumnTypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
+    }
 }

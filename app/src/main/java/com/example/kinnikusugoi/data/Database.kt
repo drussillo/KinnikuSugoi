@@ -1,6 +1,7 @@
 package com.example.kinnikusugoi.data
 
 import android.content.Context
+import androidx.room3.ColumnTypeConverters
 import androidx.room3.Database
 import androidx.room3.Room
 import androidx.room3.RoomDatabase
@@ -22,6 +23,7 @@ import javax.inject.Singleton
             workout_exercise::class,
             history::class
         ], version = 1)
+@ColumnTypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun workoutDao(): WorkoutDao

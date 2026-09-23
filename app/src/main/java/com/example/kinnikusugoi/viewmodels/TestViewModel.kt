@@ -12,6 +12,7 @@ import com.example.kinnikusugoi.data.user
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,9 +24,9 @@ class TestViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            users = db.userDao().getAll().toString()
+            //db.userDao().insertAll(user("id_010101", "John Smith", Date(), Units.KGS))  // test user
 
-            //db.userDao().insertAll(user("id_010101", "John Smith", 12345, Units.KGS))  // test user
+            users = db.userDao().getAll().toString()
         }
     }
 }
