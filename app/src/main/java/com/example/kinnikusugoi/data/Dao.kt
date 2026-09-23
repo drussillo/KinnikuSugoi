@@ -20,6 +20,9 @@ interface WorkoutDao {
 
     @Query("SELECT * FROM workout")
     suspend fun getAll(): List<workout>
+
+    @Query("SELECT name FROM workout")
+    suspend fun getNames(): List<String>
 }
 
 @Dao

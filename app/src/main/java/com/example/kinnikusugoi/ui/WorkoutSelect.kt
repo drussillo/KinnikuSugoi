@@ -79,13 +79,15 @@ private fun WorkoutList(
     viewModel: TestViewModel = hiltViewModel(),  // TODO: temporary test, will replace with Workout ViewModel
     modifier: Modifier = Modifier
 ) {
-    Text(modifier = modifier, text=viewModel.users) // TODO: temporary test
     LazyColumn(
         modifier = modifier
     ) {
-        /*items(getSampleWorkouts()) { workout ->
+        item {
+            Text(modifier = modifier, text=viewModel.users) // TODO: temporary test
+        }
+        items(getSampleWorkouts()) { workout ->
             Text(text = workout)
-        }*/
+        }
     }
 }
 
