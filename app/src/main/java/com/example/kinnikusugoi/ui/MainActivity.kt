@@ -31,10 +31,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
-
-    // test
-    //testdb()
-
     NavHost(
         navController = navController,
         startDestination = "start",

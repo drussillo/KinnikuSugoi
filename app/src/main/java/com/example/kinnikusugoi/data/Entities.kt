@@ -4,6 +4,7 @@ import androidx.room3.ColumnTypeConverter
 import androidx.room3.ColumnTypeConverters
 import androidx.room3.Embedded
 import androidx.room3.Entity
+import androidx.room3.ForeignKey
 import androidx.room3.Index
 import androidx.room3.PrimaryKey
 import androidx.room3.Relation
@@ -19,6 +20,15 @@ data class user(
 )
 
 @Entity(
+    foreignKeys = [
+        ForeignKey(
+            entity = user::class,
+            parentColumns = ["user_id"],
+            childColumns = ["user_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
+        )
+    ],
     indices = [
         Index(
             value = ["user_id", "name"],

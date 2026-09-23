@@ -29,6 +29,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kinnikusugoi.R
 import com.example.kinnikusugoi.viewmodels.TestViewModel
+import com.example.kinnikusugoi.viewmodels.WorkoutViewModel
 import kotlinx.coroutines.launch
 
 
@@ -76,22 +77,14 @@ fun WorkoutSelect() {
 
 @Composable
 private fun WorkoutList(
-    viewModel: TestViewModel = hiltViewModel(),  // TODO: temporary test, will replace with Workout ViewModel
+    viewModel: WorkoutViewModel = hiltViewModel(),  // TODO: temporary test, will replace with Workout ViewModel
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
         modifier = modifier
     ) {
-        item {
-            Text(modifier = modifier, text=viewModel.users) // TODO: temporary test
-        }
-        items(getSampleWorkouts()) { workout ->
-            Text(text = workout)
+        items(viewModel.workouts) { workout ->
+            Text(text = "${workout.first} by ${workout.second}")
         }
     }
-}
-
-
-private fun getSampleWorkouts(): List<String> {
-    return listOf("Workout A", "Workout B", "Test Workout", "Quick", "Full Body")
 }

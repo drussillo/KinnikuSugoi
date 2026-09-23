@@ -3,6 +3,7 @@ package com.example.kinnikusugoi.data
 import androidx.room3.Dao
 import androidx.room3.Insert
 import androidx.room3.Query
+import androidx.room3.Transaction
 
 @Dao
 interface UserDao {
@@ -18,11 +19,13 @@ interface WorkoutDao {
     @Insert
     suspend fun insertAll(vararg workouts: workout)
 
+    @Transaction
     @Query("SELECT * FROM workout")
     suspend fun getAll(): List<workout>
 
-    @Query("SELECT name FROM workout")
-    suspend fun getNames(): List<String>
+    @Transaction
+    @Query("SELECT name, user_id FROM workout")
+    suspend fun getNames(): List<Pair<String, String>>
 }
 
 @Dao

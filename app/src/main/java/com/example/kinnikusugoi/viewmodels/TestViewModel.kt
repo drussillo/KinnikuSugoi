@@ -20,8 +20,6 @@ class TestViewModel @Inject constructor(
     private val db: AppDatabase
 ) : ViewModel() {
 
-    var users: String by mutableStateOf<String>("loading...")
-
     init {
         viewModelScope.launch {
             //db.userDao().insertAll(user("id_010101", "John Smith", Date(), Units.KGS))  // test user
@@ -29,4 +27,6 @@ class TestViewModel @Inject constructor(
             users = db.userDao().getAll().toString()
         }
     }
+    var users: String by mutableStateOf<String>("loading...")
+
 }
