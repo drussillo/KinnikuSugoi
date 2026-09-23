@@ -13,11 +13,13 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.example.kinnikusugoi.viewmodels.TestViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WorkoutEditor(
+    //viewModel: TestViewModel = hiltViewModel(),  // TODO
     show: Boolean,
     onDismissRequest: () -> Unit,
     workoutName: String
