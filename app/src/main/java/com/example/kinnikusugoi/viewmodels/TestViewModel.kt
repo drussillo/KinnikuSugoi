@@ -22,7 +22,7 @@ class TestViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            //db.userDao().insertAll(user("id_010101", "John Smith", Date(), Units.KGS))  // test user
+            db.userDao().insertAll(user("id_1", "John Smith", Date(), Units.KGS))  // test user
 
             users = db.userDao().getAll().toString()
         }

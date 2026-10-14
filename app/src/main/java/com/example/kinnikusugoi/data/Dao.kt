@@ -4,6 +4,7 @@ import androidx.room3.Dao
 import androidx.room3.Insert
 import androidx.room3.Query
 import androidx.room3.Transaction
+import java.util.Date
 
 @Dao
 interface UserDao {
@@ -24,8 +25,8 @@ interface WorkoutDao {
     suspend fun getAll(): List<workout>
 
     @Transaction
-    @Query("SELECT name, user_id FROM workout")
-    suspend fun getNames(): List<Pair<String, String>>
+    @Query("SELECT name, last_performed FROM workout")
+    suspend fun getDisplayInfo(): List<Pair<String, Date>>
 }
 
 @Dao

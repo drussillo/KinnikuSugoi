@@ -21,17 +21,19 @@ class WorkoutViewModel @Inject constructor(
             /*
             db.workoutDao().insertAll(
                 workout(
-                    workout_id = "wid_00001",
-                    user_id = "nouser",
+                    workout_id = "wid_1",
+                    user_id = "id_1",
                     name = "WorkoutA",
                     last_performed = Date()
                 )
             )
             */
 
-            workouts = db.workoutDao().getNames()
+            //workouts = db.workoutDao().getNames()
+            workoutsDisplay = db.workoutDao().getDisplayInfo()
         }
     }
 
-    var workouts by mutableStateOf<List<Pair<String, String>>>(emptyList<Pair<String, String>>())
+    //var workouts by mutableStateOf<List<Pair<String, String>>>(emptyList<Pair<String, String>>())
+    var workoutsDisplay by mutableStateOf<List<Pair<String, Date>>>(emptyList<Pair<String, Date>>())
 }

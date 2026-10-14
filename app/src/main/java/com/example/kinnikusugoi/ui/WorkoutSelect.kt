@@ -23,6 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,6 +34,7 @@ import com.example.kinnikusugoi.R
 import com.example.kinnikusugoi.viewmodels.TestViewModel
 import com.example.kinnikusugoi.viewmodels.WorkoutViewModel
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 
 @Composable
@@ -46,7 +50,10 @@ fun WorkoutSelect() {
                     .statusBarsPadding(),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(text="Select Your Workout")
+                Text(
+                    fontWeight = FontWeight.Bold,
+                    text="Select Your Workout"
+                )
             }
         },
         floatingActionButtonPosition = FabPosition.Center,
@@ -77,14 +84,31 @@ fun WorkoutSelect() {
 
 @Composable
 private fun WorkoutList(
-    viewModel: WorkoutViewModel = hiltViewModel(),  // TODO: temporary test, will replace with Workout ViewModel
+    viewModel: WorkoutViewModel = hiltViewModel(),
     modifier: Modifier = Modifier
 ) {
+    if(viewModel.workoutsDisplay.isEmpty()) {
+        Text(
+            modifier = modifier,  // TODO: Make it pretty
+            text = "You have no workouts. Press the + button to add one."
+        )
+        return
+    }
+
     LazyColumn(
         modifier = modifier
     ) {
-        items(viewModel.workouts) { workout ->
-            Text(text = "${workout.first} by ${workout.second}")
+        val dateFormatter = SimpleDateFormat("E, dd/MM/YY")
+        items(viewModel.workoutsDisplay) { workout ->
+            /*
+            val annotatedWorkoutText = buildAnnotatedString {
+                withStyle() {
+                    append("test")
+                }
+            }
+            Text(text = annotatedWorkoutText)
+            */
+            Text(text = "${workout.first}, last performed on ${dateFormatter.format(workout.second)}")
         }
     }
 }
